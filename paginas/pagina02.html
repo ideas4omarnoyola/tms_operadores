@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 02</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina02/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina02/texto.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="info_menu" src="../img/pagina02/info_menu.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info_recargar" src="../img/pagina02/info_recargar.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info_bocina" src="../img/pagina02/info_bocina.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info_navegacion" src="../img/pagina02/info_navegacion.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="menu" src="../img/pagina02/menu.png" data-posX="257" data-posY="206" alt="">
+    <img class="elementos" id="recargar" src="../img/pagina02/recargar.png" data-posX="257" data-posY="286" alt="">
+    <img class="elementos" id="bocina" src="../img/pagina02/bocina.png" data-posX="257" data-posY="366" alt="">
+    <img class="elementos" id="navegacion" src="../img/pagina02/navegacion.png" data-posX="257" data-posY="446" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const texto = $('#texto');
+        const btnMenu = $('#menu');
+        const btnRecargar = $('#recargar');
+        const btnBocina = $('#bocina');
+        const btnNavegacion = $('#navegacion');
+            
+        const info_menu = $('#info_menu');
+        const info_recargar = $('#info_recargar');
+        const info_bocina = $('#info_bocina');
+        const info_navegacion = $('#info_navegacion');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.activarBotonAtras();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], escucharMenu, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(texto, 'derecha-izquierda', 1, 1);
+            animacionEntrada(btnMenu, 'arriba-abajo', 1, 2);
+            animacionEntrada(btnRecargar, 'arriba-abajo', 1, 2.5);
+            animacionEntrada(btnBocina, 'arriba-abajo', 1, 3);
+            animacionEntrada(btnNavegacion, 'arriba-abajo', 1, 3.5);
+        }
+
+        function escucharMenu(){
+            parpadear(btnMenu);
+        }
+        
+        function escucharRecargar(){
+            parpadear(btnRecargar);
+        }
+        
+        function escucharBocina(){
+            parpadear(btnBocina);
+        }
+        
+        function escucharNavegacion(){
+            parpadear(btnNavegacion);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+        btnMenu.click(()=>{
+            if(btnMenu.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audio[1], escucharRecargar, 1);
+                dejarParpadear(btnMenu);
+                animacionEntrada(info_menu, 'default', 1);
+            }
+        });
+
+        btnRecargar.click(()=>{
+            if(btnRecargar.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audio[2], escucharBocina, 1);
+                dejarParpadear(btnRecargar);
+                animacionEntrada(info_recargar, 'default', 1);
+            }
+        });
+
+        btnBocina.click(()=>{
+            if(btnBocina.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audio[3], escucharNavegacion, 1);
+                dejarParpadear(btnBocina);
+                animacionEntrada(info_bocina, 'default', 1);
+            }
+        });
+
+        btnNavegacion.click(()=>{
+            if(btnNavegacion.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audio[4], finalPagina, 1);
+                dejarParpadear(btnNavegacion);
+                animacionEntrada(info_navegacion, 'default', 1);
+            }
+        });
+
+    </script>
+</body>
+</html>

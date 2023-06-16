@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 14</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">    
+    
+    <img class="elementos" id="texto" src="../img/pagina14/texto.png" data-posX="0" data-posY="0">
+
+    <img class="elementos drops" id="drop1" data-lugar="1" src="../img/pagina14/drop1.png" data-posX="426" data-posY="164" alt="">
+    <img class="elementos drops" id="drop2" data-lugar="2" src="../img/pagina14/drop2.png" data-posX="426" data-posY="376" alt="">
+
+    <img class="elementos drags" id="drag1" data-lugar="1" data-drop="1" src="../img/pagina14/drag1.png" data-posX="794" data-posY="152" alt="">
+    <img class="elementos drags" id="drag2" data-lugar="2" data-drop="1" src="../img/pagina14/drag2.png" data-posX="877" data-posY="198" alt="">
+    <img class="elementos drags" id="drag3" data-lugar="3" data-drop="2" src="../img/pagina14/drag3.png" data-posX="794" data-posY="242" alt="">
+    <img class="elementos drags" id="drag4" data-lugar="4" data-drop="1" src="../img/pagina14/drag4.png" data-posX="877" data-posY="288" alt="">
+    <img class="elementos drags" id="drag5" data-lugar="5" data-drop="2" src="../img/pagina14/drag5.png" data-posX="794" data-posY="364" alt="">
+    <img class="elementos drags" id="drag6" data-lugar="6" data-drop="2" src="../img/pagina14/drag6.png" data-posX="877" data-posY="408" alt="">
+    <img class="elementos drags" id="drag7" data-lugar="7" data-drop="1" src="../img/pagina14/drag7.png" data-posX="794" data-posY="457" alt="">
+    <img class="elementos drags" id="drag8" data-lugar="8" data-drop="2" src="../img/pagina14/drag8.png" data-posX="877" data-posY="509" alt="">
+    
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const retroBuena = $('#retroBuena');
+
+        const drags = $('.drags');
+        const drops = $('.drops');
+
+        const drop1 = $('#drop1');
+        const drop2 = $('#drop2');
+        const drop3 = $('#drop3');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+        const drag5 = $('#drag5');
+        const drag6 = $('#drag6');
+        const drag7 = $('#drag7');
+        const drag8 = $('#drag8');
+
+        let dragSelect;
+        let dropSelect;
+        let colocados = 0;
+        let aciertos = 0;
+
+        let delay = 1;
+
+        drags.css('cursor', 'grab');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], completarArticulos, 1);
+            animacionEntrada(texto, 'default', 1);
+            animacionEntrada(drop1, 'default', 1, 1);
+            animacionEntrada(drop2, 'default', 1, 1.5);
+
+            drags.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
+        }
+
+        function completarArticulos(){
+
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drops.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+            
+            //Comparar si es el lugar correspondiente
+            if(dragActivo.data('drop') == dropSelect){
+                
+                //Deshabilitar el regreso
+                dragActivo.draggable({
+                    revert: false,
+                });
+
+                //Deshabilitar drag
+                dragActivo.draggable('disable');
+                dragActivo.css('cursor', 'default');
+
+                colocados++;
+
+                if(colocados == 8){
+                    siguiente();
+                }
+            }
+        }
+
+        function siguiente() {  
+            aplicacion.terminaPantalla();
+        }
+
+    </script>
+</body>
+</html>

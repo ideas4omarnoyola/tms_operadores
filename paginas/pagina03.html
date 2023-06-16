@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 03</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina03/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina03/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina03/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const texto = $('#texto');
+        const instrucciones = $('#instrucciones');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarBoton, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(texto, 'abajo-arriba', 1, 1);
+
+            setTimeout(()=> {
+                animacionEntrada(instrucciones, 'derecha-izquierda', 1);
+            }, 3000);
+        }
+
+        function activarBoton(){
+            aplicacion.terminaPantalla();
+        }
+
+    </script>
+</body>
+</html>

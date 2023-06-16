@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 09</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    
+    <img class="elementos" id="texto" src="../img/pagina09/texto.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="play" src="../img/pagina09/play.png" data-posX="490" data-posY="253"/>
+
+    <video class="elementos" id="video1" data-posX="0" data-posY="70"  autobuffer controls controlsList="nodownload nofullscreen">
+        <source src="../videos/Video 3_Somnolencia y ciclo circadiano_Compress.mp4" type="video/mp4" />
+    </video>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const play = $('#play');
+        const video1 = $('#video1');
+
+        video1.css({
+            'width': '1020px',
+            'height': '450px'
+        });
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarVideo, 2);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function activarVideo(){
+            parpadear(play);
+        }
+
+        play.click(function(){
+            if(play.css('cursor') == 'pointer'){
+                animacionSalida(texto, 'default', 1, 1);
+                animacionEntrada(video1, 'default', 1, 1);
+
+                setTimeout(()=>{
+                    document.getElementById("video1").play();
+                    video1.on("ended", function() {
+                        aplicacion.terminaPantalla();
+                    });
+                }, 1000);
+            }
+        });
+
+        
+
+    </script>
+</body>
+</html>
