@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 23</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="texto" src="../img/pagina23/texto.png" data-posX="0" data-posY="0"/>
+    
+    <img class="elementos botones" id="boton1" data-index="0" src="../img/pagina23/boton1.png" data-posX="497" data-posY="155" alt="">
+    <img class="elementos botones" id="boton2" data-index="1" src="../img/pagina23/boton2.png" data-posX="697" data-posY="222" alt="">
+    <img class="elementos botones" id="boton3" data-index="2" src="../img/pagina23/boton3.png" data-posX="497" data-posY="421" alt="">
+    <img class="elementos botones" id="boton4" data-index="2" src="../img/pagina23/boton4.png" data-posX="430" data-posY="222" alt="">
+
+    <img class="elementos" id="pop1" src="../img/pagina23/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop2" src="../img/pagina23/pop2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop3" src="../img/pagina23/pop3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop4" src="../img/pagina23/pop4.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina23/cerrar.png" data-posX="730" data-posY="249" alt="">
+    <img class="elementos botonCerrar" id="cerrar2" src="../img/pagina23/cerrar.png" data-posX="730" data-posY="249" alt="">
+    <img class="elementos botonCerrar" id="cerrar3" src="../img/pagina23/cerrar.png" data-posX="730" data-posY="249" alt="">
+    <img class="elementos botonCerrar" id="cerrar4" src="../img/pagina23/cerrar.png" data-posX="730" data-posY="249" alt="">
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
+        const pop1 = $('#pop1');
+        const pop2 = $('#pop2');
+        const pop3 = $('#pop3');
+        const pop4 = $('#pop4');
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+        const cerrar3 = $('#cerrar3');
+        const cerrar4 = $('#cerrar4');
+        const botones = $('.botones');
+        const botonCerrar = $('.botonCerrar');
+
+        const pops = [pop1, pop2, pop3, pop4];
+        const cerrar = [cerrar1, cerrar2, cerrar3, cerrar4];
+        const botonActivo = [boton1, boton2, boton3, boton4];
+
+        let indexPop = 0;
+        let botonesActivos = false;
+        let delay = .5;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        const audioPop = [
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 2);
+            animacionEntrada(texto, 'default', 1, 1);
+
+            botones.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
+        }
+
+        function botonera(){
+            parpadear(botonActivo[indexPop]);
+        }
+
+        botones.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+
+                    if(botonesActivos){
+                        indexPop = $(this).data('index');
+                    }
+                    else{
+                        dejarParpadear($(this));
+                    }
+
+                    aplicacion.reproducirAudio(audioPop[indexPop], cerrarPop, 1);
+                    animacionEntrada(pops[indexPop], 'default', 1, 1);
+                }
+            });
+        });
+
+        function cerrarPop(){ 
+            parpadear(cerrar[indexPop]);
+        }
+
+        botonCerrar.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+                    dejarParpadear($(this));                    
+                    animacionSalida(pops[indexPop], 'default', 1, 1);
+                    animacionSalida(cerrar[indexPop], 'default', 1, 1);
+                    
+                    if(!botonesActivos){
+                        siguiente();
+                    }
+                }
+            });
+        });
+
+        function siguiente() {  
+            
+            indexPop++;
+
+            if(indexPop < pops.length){
+                botonera();
+            }
+            else{
+                activarBotones();
+                aplicacion.terminaPantalla();
+            }
+        }
+
+        function activarBotones(){
+            botones.css('cursor', 'pointer');
+            botonesActivos = true;
+        }
+
+    </script>
+</body>
+</html>

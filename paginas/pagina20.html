@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 20</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="texto" src="../img/pagina20/texto.png" data-posX="0" data-posY="0">   
+
+    
+    <img class="elementos infos" id="info1" src="../img/pagina20/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina20/info2.png" data-posX="0" data-posY="0" alt=""> 
+
+    <img class="elementos drops" id="drop2" data-lugar="2" src="../img/pagina20/drop2.png" data-posX="331" data-posY="147" alt="">
+    <img class="elementos drops" id="drop1" data-lugar="1" src="../img/pagina20/drop1.png" data-posX="317" data-posY="357" alt="">
+
+    <img class="elementos drags" id="drag1" data-lugar="1" src="../img/pagina20/drag1.png" data-posX="838" data-posY="198" alt="">
+    <img class="elementos drags" id="drag2" data-lugar="2" src="../img/pagina20/drag2.png" data-posX="851" data-posY="405" alt="">
+    
+    
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+
+        const drags = $('.drags');
+        const drops = $('.drops');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+
+        const drop1 = $('#drop1');
+        const drop2 = $('#drop2');
+
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+
+        let dragSelect;
+        let dropSelect;
+        let colocados = 0;
+        let aciertos = 0;
+
+        const dragA = [drag1, drag2];
+        const info = [info1, info2];
+
+        drags.css('cursor', 'grab');
+
+        let indexDrag = 0;
+        let delay = .5;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        const audioDrag = [
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], completarDefinicion, 1);
+            animacionEntrada(texto, 'default', 1);
+            animacionEntrada(drops, 'default', 1);
+
+            drags.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
+        }
+
+        function completarDefinicion(){
+
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drops.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+
+            
+            //Comparar si es el lugar correspondiente
+            if(dragSelect == dropSelect){
+                
+                //Sacar el top y el left del drop 
+                const dropTop = dropActivo.css('top');
+                const dropLeft = dropActivo.css('left');
+
+                //Posicionar el drag en el drop
+                dragActivo.css({
+                    'top': `${Number(dropTop.split('px')[0]) + 10}px`,
+                    'left': `${Number(dropLeft.split('px')[0]) + 6}px`
+                });
+
+                //Deshabilitar el regreso
+                dragActivo.draggable({
+                    revert: false,
+                });
+
+                //Deshabilitar drag
+                dragActivo.draggable('disable');
+                dragActivo.css('cursor', 'default');
+
+                aplicacion.reproducirAudio(audioDrag[dragSelect - 1], siguiente, 1);
+                animacionEntrada(info[dragSelect - 1], 'default', 1);
+
+                console.log(dragSelect - 1);
+            }
+        }
+
+        function siguiente(){
+            colocados++;
+
+            if(colocados == dragA.length){
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

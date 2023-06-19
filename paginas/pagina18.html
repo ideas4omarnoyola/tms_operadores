@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 18</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="texto" src="../img/pagina18/texto.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro1" src="../img/pagina18/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina18/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro3" src="../img/pagina18/cuadro3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro4" src="../img/pagina18/cuadro4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro5" src="../img/pagina18/cuadro5.png" data-posX="0" data-posY="0"/>
+    
+    <img class="elementos" id="atras" src="../img/pagina18/atras.png" data-posX="40" data-posY="296"/>
+    <img class="elementos" id="adelante" src="../img/pagina18/adelante.png" data-posX="920" data-posY="296"/>
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const cuadro3 = $('#cuadro3');
+        const cuadro4 = $('#cuadro4');
+        const cuadro5 = $('#cuadro5');
+        const atras = $('#atras');
+        const adelante = $('#adelante');
+
+        atras.css('cursor', 'pointer');
+
+        const slides = [
+            cuadro1,
+            cuadro2,
+            cuadro3,
+            cuadro4,
+            cuadro5,
+        ]
+
+        let noSlide = 0;
+
+        // Audios------------------------------------------------------
+
+        const audiosSlides = [  
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(texto, 'default', 1)
+            actividad();
+        }
+
+        function actividad(){
+            carrusel(noSlide)
+        }
+
+        function carrusel(pantalla){
+            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
+            animacionEntrada(slides[pantalla], 'default', 1, 1);
+
+            if(pantalla > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante(){
+            if(noSlide < slides.length -1){
+                parpadear(adelante);
+            }
+            if(noSlide == slides.length -1){
+                aplicacion.terminaPantalla();
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                noSlide++;
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+        atras.click(function(){
+            if(noSlide > 0){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlide--;
+                
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+    </script>
+</body>
+</html>
