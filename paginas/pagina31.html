@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 31</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina31/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto2" src="../img/pagina31/texto2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos infos" id="info1" src="../img/pagina31/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info1_1" src="../img/pagina31/info1_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info1_2" src="../img/pagina31/info1_2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info1_3" src="../img/pagina31/info1_3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina31/info2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info3" src="../img/pagina31/info3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info4" src="../img/pagina31/info4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info5" src="../img/pagina31/info5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info6" src="../img/pagina31/info6.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info7" src="../img/pagina31/info7.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const texto2 = $('#texto2');
+        const info1 = $('#info1');
+        const info1_1 = $('#info1_1');
+        const info1_2 = $('#info1_2');
+        const info1_3 = $('#info1_3');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const info4 = $('#info4');
+        const info5 = $('#info5');
+        const info6 = $('#info6');
+        const info7 = $('#info7');
+
+        const informacion = [info1, info2, info3, info4, info5, info6, info7];
+
+        let indexInfo = 0;
+        
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3')
+        ]
+
+        const audioReglas = [
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], reglas, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function reglas(){
+            narrarReglas();
+        }
+
+        function narrarReglas(){
+            aplicacion.reproducirAudio(audioReglas[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+
+            if(indexInfo == 0){
+                animacionEntrada(info1_1, 'default', 1, 1);
+                animacionEntrada(info1_2, 'default', 1, 1.5);
+                animacionEntrada(info1_3, 'default', 1, 2);
+            }
+
+            if(indexInfo == 1){
+                animacionSalida(texto, 'default', 1);
+                animacionEntrada(texto2, 'default', 1);
+            }
+        }
+
+        function siguiente(){
+
+            if(indexInfo == 0){
+                animacionSalida(info1_1, 'default', 1);
+                animacionSalida(info1_2, 'default', 1);
+                animacionSalida(info1_3, 'default', 1);
+            }
+
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                animacionSalida(informacion[indexInfo - 1], 'default', 1);
+                reglas();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

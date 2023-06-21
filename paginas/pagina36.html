@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 36</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">    
+    <img class="elementos" id="texto" src="../img/pagina36/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="h1" src="../img/pagina36/h1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="h2" src="../img/pagina36/h2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="h3" src="../img/pagina36/h3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="h4" src="../img/pagina36/h4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="h5" src="../img/pagina36/h5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="h6" src="../img/pagina36/h6.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Pregunta 1 -->
+    <img class="elementos" id="p1" src="../img/pagina36/p1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r1_a" src="../img/pagina36/r1_a.png" data-posX="360" data-posY="288" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r1_b" src="../img/pagina36/r1_b.png" data-posX="628" data-posY="288" data-respuesta="m" alt="">
+
+    <!-- Pregunta 2 -->
+    <img class="elementos" id="p2" src="../img/pagina36/p2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r2_a" src="../img/pagina36/r2_a.png" data-posX="360" data-posY="288" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r2_b" src="../img/pagina36/r2_b.png" data-posX="628" data-posY="288" data-respuesta="b" alt="">
+
+    <!-- Pregunta 3 -->
+    <img class="elementos" id="p3" src="../img/pagina36/p3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r3_a" src="../img/pagina36/r3_a.png" data-posX="360" data-posY="288" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r3_b" src="../img/pagina36/r3_b.png" data-posX="628" data-posY="288" data-respuesta="m" alt="">
+
+    <!-- Pregunta 4 -->
+    <img class="elementos" id="p4" src="../img/pagina36/p4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r4_a" src="../img/pagina36/r4_a.png" data-posX="360" data-posY="288" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r4_b" src="../img/pagina36/r4_b.png" data-posX="628" data-posY="288" data-respuesta="b" alt="">
+
+    <!-- Pregunta 5 -->
+    <img class="elementos" id="p5" src="../img/pagina36/p5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r5_a" src="../img/pagina36/r5_a.png" data-posX="360" data-posY="288" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r5_b" src="../img/pagina36/r5_b.png" data-posX="628" data-posY="288" data-respuesta="m" alt="">
+
+    <img class="elementos" id="paloma" src="../img/pagina36/paloma.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tache1" src="../img/pagina36/tache.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="retroBuena" src="../img/pagina36/retroBuena.png" data-posX="0" data-posY="0" alt="">
+    
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const paloma = $('#paloma');
+        const tache1 = $('#tache1');
+        const respuestas = $('.respuestas');
+        const retroBuena = $('#retroBuena');
+
+        const p1 = $('#p1');
+        const r1_a = $('#r1_a');
+        const r1_b = $('#r1_b');
+        
+        const p2 = $('#p2');
+        const r2_a = $('#r2_a');
+        const r2_b = $('#r2_b');
+
+        const p3 = $('#p3');
+        const r3_a = $('#r3_a');
+        const r3_b = $('#r3_b');
+
+        const p4 = $('#p4');
+        const r4_a = $('#r4_a');
+        const r4_b = $('#r4_b');
+
+        const p5 = $('#p5');
+        const r5_a = $('#r5_a');
+        const r5_b = $('#r5_b');
+
+        const h1 = $('#h1');
+        const h2 = $('#h2');
+        const h3 = $('#h3');
+        const h4 = $('#h4');
+        const h5 = $('#h5');
+        const h6 = $('#h6');
+
+        respuestas.css('cursor', 'pointer');
+
+        let indexPregunta = 0;
+
+        const preguntas = [p1, p2, p3, p4, p5];
+        const respuestasA = [r1_a, r2_a, r3_a, r4_a, r5_a];
+        const respuestasB = [r1_b, r2_b, r3_b, r4_b, r5_b];
+        const hombres = [h1, h2, h3, h4, h5];
+
+        const rA = $('.rA');
+        const rB = $('.rB');
+        
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_36_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_36_02.mp3'),
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], entradaPreguntas, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function entradaPreguntas() {  
+            animacionEntrada(preguntas[indexPregunta], 'default', 1, 1);
+            animacionEntrada(respuestasA[indexPregunta], 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(respuestasB[indexPregunta], 'derecha-izquierda', 1, 2);
+            animacionEntrada(hombres[indexPregunta], 'izquierda-derecha', 1, 1);
+        }
+
+        rA.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    $(this).css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+                        paloma.css({
+                            'left': '514px',
+                            'top': '279px'
+                        });
+
+                        audio[2].play();
+                        animacionEntrada(paloma, 'default', 1);
+
+                        setTimeout(()=>{
+                            salidaPreguntas();
+                        }, 2000);
+                        
+                    }
+                    else{
+                        tache1.css({
+                            'left': '514px',
+                            'top': '279px'
+                        });
+
+                        audio[3].play();
+                        animacionEntrada(tache1, 'default', 1);
+                    }
+                }
+            });
+        });
+
+        rB.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    $(this).css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+                        paloma.css({
+                            'left': '800px',
+                            'top': '279px'
+                        });
+
+                        audio[2].play();
+                        animacionEntrada(paloma, 'default', 1);
+
+                        setTimeout(()=>{
+                            salidaPreguntas();
+                        }, 2000);
+                    }
+                    else{
+                        tache1.css({
+                            'left': '800px',
+                            'top': '279px'
+                        });
+
+                        audio[3].play();
+                        animacionEntrada(tache1, 'default', 1);
+                    }
+                }
+            });
+        });
+
+        function salidaPreguntas() {  
+            animacionSalida(preguntas[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasA[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasB[indexPregunta], 'default', 1, .5);
+            animacionSalida(hombres[indexPregunta], 'default', 1, .5);
+
+            animacionSalida(paloma, 'default', 1, .5);
+            animacionSalida(tache1, 'default', 1, .5);
+
+            indexPregunta++;
+
+            if(indexPregunta < preguntas.length){
+                respuestas.css('cursor', 'pointer');
+                entradaPreguntas();
+            }
+            else{
+                animacionEntrada(h6, 'default', 1, 1);
+                setTimeout(()=> {
+                    bien();
+                }, 2000);
+            }
+        }
+
+        function bien() {
+            aplicacion.reproducirAudio(audio[1], finalPagina, 1);  
+            animacionEntrada(retroBuena, 'default', 1, 1);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+    </script>
+</body>
+</html>

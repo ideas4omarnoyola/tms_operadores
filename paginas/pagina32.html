@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 32</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">    
+    
+    <img class="elementos" id="texto" src="../img/pagina32/texto.png" data-posX="0" data-posY="0">
+
+    <img class="elementos drops" id="drop3" data-lugar="3" src="../img/pagina32/drop.png" data-posX="369" data-posY="244" alt="">
+    <img class="elementos drops" id="drop5" data-lugar="5" src="../img/pagina32/drop.png" data-posX="535" data-posY="244" alt="">
+    <img class="elementos drops" id="drop1" data-lugar="1" src="../img/pagina32/drop.png" data-posX="701" data-posY="244" alt="">
+    <img class="elementos drops" id="drop2" data-lugar="2" src="../img/pagina32/drop.png" data-posX="867" data-posY="244" alt="">
+    <img class="elementos drops" id="drop4" data-lugar="4" src="../img/pagina32/drop.png" data-posX="402" data-posY="461" alt="">
+    <img class="elementos drops" id="drop7" data-lugar="7" src="../img/pagina32/drop.png" data-posX="604" data-posY="461" alt="">
+    <img class="elementos drops" id="drop6" data-lugar="6" src="../img/pagina32/drop.png" data-posX="806" data-posY="461" alt="">
+
+    <img class="elementos drags" id="drag1" data-lugar="1" src="../img/pagina32/drag1.png" data-posX="206" data-posY="134" alt="">
+    <img class="elementos drags" id="drag2" data-lugar="2" src="../img/pagina32/drag2.png" data-posX="206" data-posY="196" alt="">
+    <img class="elementos drags" id="drag3" data-lugar="3" src="../img/pagina32/drag3.png" data-posX="206" data-posY="257" alt="">
+    <img class="elementos drags" id="drag4" data-lugar="4" src="../img/pagina32/drag4.png" data-posX="206" data-posY="319" alt="">
+    <img class="elementos drags" id="drag5" data-lugar="5" src="../img/pagina32/drag5.png" data-posX="206" data-posY="381" alt="">
+    <img class="elementos drags" id="drag6" data-lugar="6" src="../img/pagina32/drag6.png" data-posX="206" data-posY="442" alt="">
+    <img class="elementos drags" id="drag7" data-lugar="7" src="../img/pagina32/drag7.png" data-posX="206" data-posY="504" alt="">
+    
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+
+        const drags = $('.drags');
+        const drops = $('.drops');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+        const drag5 = $('#drag5');
+
+        const drop1 = $('#drop1');
+        const drop2 = $('#drop2');
+        const drop3 = $('#drop3');
+        const drop4 = $('#drop4');
+        const drop5 = $('#drop5');
+
+        let dragSelect;
+        let dropSelect;
+        let colocados = 0;
+        let aciertos = 0;
+
+        drags.css('cursor', 'grab');
+
+        let delay = .5;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], completarDefinicion, 1);
+            animacionEntrada(texto, 'default', 1);
+            animacionEntrada(drops, 'default', 1);
+            
+            drags.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
+            
+        }
+
+        function completarDefinicion(){
+
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drops.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+
+            
+            //Comparar si es el lugar correspondiente
+            if(dragSelect == dropSelect){
+                
+                //Sacar el top y el left del drop 
+                const dropTop = dropActivo.css('top');
+                const dropLeft = dropActivo.css('left');
+
+                //Posicionar el drag en el drop
+                dragActivo.css({
+                    'top': `${Number(dropTop.split('px')[0]) + 0}px`,
+                    'left': `${Number(dropLeft.split('px')[0]) + 0}px`
+                });
+
+                //Deshabilitar el regreso
+                dragActivo.draggable({
+                    revert: false,
+                });
+
+                //Deshabilitar drag
+                dragActivo.draggable('disable');
+                dragActivo.css('cursor', 'default');
+
+                colocados++;
+
+                if(colocados == 5){
+                    aplicacion.terminaPantalla();
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

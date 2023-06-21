@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 09</title>
+    <title>Página 33</title>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/estilos.css">
@@ -21,33 +21,35 @@
 
 </head>
 <body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina33/texto.png" data-posX="0" data-posY="0" alt="">
 
-    
-    <img class="elementos" id="texto" src="../img/pagina16/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="play" src="../img/pagina16/play.png" data-posX="490" data-posY="253"/>
+    <img class="elementos infos" id="info1" src="../img/pagina33/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina33/info2.png" data-posX="0" data-posY="0" alt="">
 
-    <video class="elementos" id="video1" data-posX="0" data-posY="70"  autobuffer controls controlsList="nodownload nofullscreen">
-        <source src="../videos/Video 2_Prevención de la fatiga_VF_compress.mp4" type="video/mp4" />
-    </video>
 
-    
     <!-- Script de la página -->
     <script>
 
         // Variable----------------------------------------------------
         let aplicacion = parent;
-        const texto = $('#texto');
-        const play = $('#play');
-        const video1 = $('#video1');
 
-        video1.css({
-            'width': '1020px',
-            'height': '450px'
-        });
+        const texto = $('#texto');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+
+        const informacion = [info1, info2];
+
+        let indexInfo = 0;
+        
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/audio0.mp3')
+        ]
+
+        const audioReglas = [
+            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/audio0.mp3'),
         ]
 
         // Al cargarse la página
@@ -57,29 +59,30 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], activarVideo, 2);
+            aplicacion.reproducirAudio(audio[0], reglas, 1);
             animacionEntrada(texto, 'default', 1, 1);
         }
 
-        function activarVideo(){
-            parpadear(play);
+        function reglas(){
+            narrarReglas();
         }
 
-        play.click(function(){
-            if(play.css('cursor') == 'pointer'){
-                animacionSalida(texto, 'default', 1, 1);
-                animacionEntrada(video1, 'default', 1, 1);
+        function narrarReglas(){
+            aplicacion.reproducirAudio(audioReglas[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
 
-                setTimeout(()=>{
-                    document.getElementById("video1").play();
-                    video1.on("ended", function() {
-                        aplicacion.terminaPantalla();
-                    });
-                }, 1000);
+        function siguiente(){
+
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                animacionSalida(informacion[indexInfo - 1], 'default', 1);
+                reglas();
             }
-        });
-
-        
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
 
     </script>
 </body>
