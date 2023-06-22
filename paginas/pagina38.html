@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 38</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina38/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina38/d1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton1" src="../img/pagina38/boton1.png" data-posX="240" data-posY="213" alt="">
+    <img class="elementos infos" id="info1" src="../img/pagina38/info1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton2" src="../img/pagina38/boton2.png" data-posX="240" data-posY="364" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina38/info2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton3" src="../img/pagina38/boton3.png" data-posX="435" data-posY="163" alt="">
+    <img class="elementos infos" id="info3" src="../img/pagina38/info3.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton4" src="../img/pagina38/boton4.png" data-posX="435" data-posY="301" alt="">
+    <img class="elementos infos" id="info4" src="../img/pagina38/info4.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton5" src="../img/pagina38/boton5.png" data-posX="435" data-posY="440" alt="">
+    <img class="elementos infos" id="info5" src="../img/pagina38/info5.png" data-posX="0" data-posY="0" alt="">
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const d1 = $('#d1');
+        const instrucciones = $('#instrucciones');
+
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
+        const boton5 = $('#boton5');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const info4 = $('#info4');
+        const info5 = $('#info5');
+
+        const botones = $('.botones');
+
+        const informacion = [info1, info2, info3, info4, info5];
+        const btns = [boton1, boton2, boton3, boton4, boton5];
+
+        let indexInfo = 0;
+
+        let delay = 1;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_07.mp3'),
+        ]
+
+        const audioBotones = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_04.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_05.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_38_06.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+
+            botones.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
+        }
+        
+        function botonera(){
+            parpadear(btns[indexInfo]);
+        }
+
+        botones.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    aplicacion.reproducirAudio(audioBotones[indexInfo], siguiente, 1);
+                    animacionEntrada(informacion[indexInfo], 'default', 1);
+                    dejarParpadear($(this));
+                }
+            });
+        });
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                botonera();
+            }
+            else{
+                aplicacion.reproducirAudio(audio[1], final, 1);
+                animacionEntrada(d1, 'default', 1);
+            }
+        }
+
+        function final(){
+            aplicacion.terminaPantalla();
+        }
+
+    </script>
+</body>
+</html>

@@ -72,12 +72,12 @@
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_20_01.mp3'),
         ]
 
         const audioDrag = [
-            new Audio('../audios/audio0.mp3'),
-            new Audio('../audios/audio0.mp3')
+            new Audio('../audios/TMS_FATIGA_OPERADORES_20_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_20_03.mp3')
         ]
 
         // Al cargarse la página
@@ -148,9 +148,14 @@
                 dragActivo.draggable('disable');
                 dragActivo.css('cursor', 'default');
 
-                aplicacion.reproducirAudio(audioDrag[dragSelect - 1], siguiente, 1);
-                animacionEntrada(info[dragSelect - 1], 'default', 1);
+                if(dragSelect == 1) {
+                    aplicacion.reproducirAudio(audioDrag[1], siguiente, 1);
+                }
+                else{
+                    aplicacion.reproducirAudio(audioDrag[0], siguiente, 1);
+                }
 
+                animacionEntrada(info[dragSelect - 1], 'default', 1);
                 console.log(dragSelect - 1);
             }
         }

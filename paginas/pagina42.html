@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 42</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina42/texto.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos infos" id="info1" src="../img/pagina42/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina42/info2.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+
+        const informacion = [info1, info2];
+
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/audio0.mp3')
+        ]
+
+        const audioReglas = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_42_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_42_02.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], reglas, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function reglas(){
+            narrarReglas();
+        }
+
+        function narrarReglas(){
+            aplicacion.reproducirAudio(audioReglas[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
+
+        function siguiente(){
+
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                reglas();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

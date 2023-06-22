@@ -59,10 +59,10 @@
         ]
 
         const audioReglas = [
-            new Audio('../audios/audio0.mp3'),
-            new Audio('../audios/audio0.mp3'),
-            new Audio('../audios/audio0.mp3'),
-            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_26_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_26_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_26_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_26_04.mp3'),
         ]
 
         // Al cargarse la página
@@ -85,8 +85,8 @@
             animacionEntrada(informacion[indexInfo], 'default', 1);
 
             if(indexInfo == 1){
-                animacionEntrada(info2_1, 'default', 1, 2);
-                animacionEntrada(info2_2, 'default', 1, 4);
+                animacionEntrada(info2_1, 'default', 1, 6);
+                animacionEntrada(info2_2, 'default', 1, 8);
             }
 
             if(indexInfo == 2){
@@ -98,8 +98,8 @@
         function siguiente(){
 
             if(indexInfo == 1){
-                animacionSalida(info2_1, 'default', 1, 2);
-                animacionSalida(info2_2, 'default', 1, 4);
+                animacionSalida(info2_1, 'default', 1);
+                animacionSalida(info2_2, 'default', 1);
             }
 
             indexInfo++;

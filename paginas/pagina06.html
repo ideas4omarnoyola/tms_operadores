@@ -58,13 +58,13 @@
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_06_01.mp3'),
         ]
 
         const audioBotones = [
-            new Audio('../audios/audio0.mp3'),
-            new Audio('../audios/audio0.mp3'),
-            new Audio('../audios/audio0.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_06_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_06_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_06_04.mp3'),
         ]
 
         // Al cargarse la página
@@ -76,7 +76,7 @@
         function iniciarContenido(){
             aplicacion.reproducirAudio(audio[0], botonera, 1);
             animacionEntrada(texto, 'default', 1);
-            animacionEntrada(instrucciones, 'default', 1, 1);
+            animacionEntrada(instrucciones, 'derecha-izquierda', 1, 1);
         }
 
         function botonera(){

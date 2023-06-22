@@ -39,7 +39,7 @@
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/audio0.mp3')
+            new Audio('../audios/TMS_FATIGA_OPERADORES_03_01.mp3')
         ]
 
         // Al cargarse la página
@@ -52,10 +52,7 @@
             aplicacion.reproducirAudio(audio[0], activarBoton, 1);
             animacionEntrada(fondo, 'default', 1);
             animacionEntrada(texto, 'abajo-arriba', 1, 1);
-
-            setTimeout(()=> {
-                animacionEntrada(instrucciones, 'derecha-izquierda', 1);
-            }, 3000);
+            animacionEntrada(instrucciones, 'derecha-izquierda', 1, 16);
         }
 
         function activarBoton(){
