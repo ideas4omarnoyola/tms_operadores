@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 63</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+   <!-- Librerias -->
+   <script src="../js/librerias/jquery.min.js"></script>
+   <script src="../js/librerias/jquery-ui.min.js"></script>
+   <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+   <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .pointer{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina63/fondo.png" data-posX="0" data-posY="0"/>
+
+    <!-- Pregunta 1 -->
+    <img class="elementos" id="p1" src="../img/pagina63/p1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r1_a" src="../img/pagina63/r1_a.png" data-posX="487" data-posY="284" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r1_b" src="../img/pagina63/r1_b.png" data-posX="487" data-posY="365" data-respuesta="b" alt="">
+    <img class="elementos respuestas rC" id="r1_c" src="../img/pagina63/r1_c.png" data-posX="487" data-posY="446" data-respuesta="m" alt="">
+  
+    <!-- Pregunta 2 -->
+    <img class="elementos" id="p2" src="../img/pagina63/p2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r2_a" src="../img/pagina63/r2_a.png" data-posX="487" data-posY="284" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r2_b" src="../img/pagina63/r2_b.png" data-posX="487" data-posY="365" data-respuesta="m" alt="">
+    <img class="elementos respuestas rC" id="r2_c" src="../img/pagina63/r2_c.png" data-posX="487" data-posY="446" data-respuesta="m" alt="">
+  
+    <!-- Pregunta 3 -->
+    <img class="elementos" id="p3" src="../img/pagina63/p3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r3_a" src="../img/pagina63/r3_a.png" data-posX="487" data-posY="284" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r3_b" src="../img/pagina63/r3_b.png" data-posX="487" data-posY="365" data-respuesta="m" alt="">
+    <img class="elementos respuestas rC" id="r3_c" src="../img/pagina63/r3_c.png" data-posX="487" data-posY="446" data-respuesta="b" alt="">
+  
+    <!-- Pregunta 4 -->
+    <img class="elementos" id="p4" src="../img/pagina63/p4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r4_a" src="../img/pagina63/r4_a.png" data-posX="487" data-posY="284" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r4_b" src="../img/pagina63/r4_b.png" data-posX="487" data-posY="365" data-respuesta="m" alt="">
+    <img class="elementos respuestas rC" id="r4_c" src="../img/pagina63/r4_c.png" data-posX="487" data-posY="446" data-respuesta="m" alt="">
+    
+    <!-- Pregunta 5 -->
+    <img class="elementos" id="p5" src="../img/pagina63/p5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r5_a" src="../img/pagina63/r5_a.png" data-posX="487" data-posY="284" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r5_b" src="../img/pagina63/r5_b.png" data-posX="487" data-posY="365" data-respuesta="b" alt="">
+  
+      
+    <img class="elementos" id="paloma" src="../img/pagina63/paloma.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tache" src="../img/pagina63/tache.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="retroBuena" src="../img/pagina63/retroBuena.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="retroMala" src="../img/pagina63/retroMala.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="btnReintentar" src="../img/pagina63/btnReintentar.png" data-posX="514" data-posY="373"/>
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const retroBuena = $('#retroBuena');
+        const btnReintentar = $('#btnReintentar');
+        const retroMala = $('#retroMala');
+
+        const paloma = $('#paloma');
+        const tache = $('#tache');
+        const respuestas = $('.respuestas');
+
+        const p1 = $('#p1');
+        const r1_a = $('#r1_a');
+        const r1_b = $('#r1_b');
+        const r1_c = $('#r1_c');
+        
+        const p2 = $('#p2');
+        const r2_a = $('#r2_a');
+        const r2_b = $('#r2_b');
+        const r2_c = $('#r2_c');
+
+        const p3 = $('#p3');
+        const r3_a = $('#r3_a');
+        const r3_b = $('#r3_b');
+        const r3_c = $('#r3_c');
+
+        const p4 = $('#p4');
+        const r4_a = $('#r4_a');
+        const r4_b = $('#r4_b');
+        const r4_c = $('#r4_c');
+
+        const p5 = $('#p5');
+        const r5_a = $('#r5_a');
+        const r5_b = $('#r5_b');
+ 
+        respuestas.css('cursor', 'pointer');
+        let indexPregunta = 0;
+
+        let aciertos = 0;
+
+        const preguntas = [p1, p2, p3, p4, p5];
+
+        const respuestasA = [r1_a, r2_a, r3_a, r4_a, r5_a];
+        const respuestasB = [r1_b, r2_b, r3_b, r4_b, r5_b];
+        const respuestasC = [r1_c, r2_c, r3_c, r4_c, r4_c];
+
+        const rA = $('.rA');
+        const rB = $('.rB');
+        const rC =  $('.rC');
+
+       
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_63_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_63_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_63_03.mp3'),
+        ]
+
+        const s_retro = [
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], entradaPreguntas, 1);
+            animacionEntrada(fondo, 'default', 1);
+        }
+
+        function entradaPreguntas() {  
+            animacionEntrada(preguntas[indexPregunta], 'default', 1, 1);
+            animacionEntrada(respuestasA[indexPregunta], 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(respuestasB[indexPregunta], 'derecha-izquierda', 1, 2);
+
+            if(indexPregunta != 4){
+                animacionEntrada(respuestasC[indexPregunta], 'derecha-izquierda', 1, 2.5);
+            }
+        }
+
+        rA.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+
+                        paloma.css({
+                            'left': '900px',
+                            'top': '291px'
+                        });
+
+                        aciertos ++;
+
+                        s_retro[0].play();
+                        animacionEntrada(paloma, 'default', 1);
+                    }
+                    else{
+                        tache.css({
+                            'left': '900px',
+                            'top': '291px'
+                        });
+
+                        s_retro[1].play();
+                        animacionEntrada(tache, 'default', 1);
+                    }
+
+                    setTimeout(() => {
+                        salidaPreguntas();
+                    }, 800);
+
+                }
+            });
+        });
+
+        rB.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+
+                        paloma.css({
+                            'left': '900px',
+                            'top': '373px'
+                        });
+                
+                        aciertos ++;
+
+                        s_retro[0].play();
+                        animacionEntrada(paloma, 'default', 1);
+                    }
+                    else{
+                        tache.css({
+                            'left': '900px',
+                            'top': '373px'
+                        });
+
+                        s_retro[1].play();
+                        animacionEntrada(tache, 'default', 1);
+                    }
+
+                    setTimeout(() => {
+                        salidaPreguntas();
+                    }, 800);
+                }
+            });
+        });
+
+        rC.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+                        paloma.css({
+                            'left': '900px',
+                            'top': '454px'
+                        });
+
+                        aciertos ++;
+
+                        s_retro[0].play();
+                        animacionEntrada(paloma, 'default', 1);
+                    }
+                    else{
+                        tache.css({
+                            'left': '900px',
+                            'top': '454px'
+                        });
+
+                        s_retro[1].play();
+                        animacionEntrada(tache, 'default', 1);
+                    }
+
+                    setTimeout(() => {
+                        salidaPreguntas();
+                    }, 800);
+                }
+            });
+        });
+
+        function salidaPreguntas() {  
+            animacionSalida(preguntas[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasA[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasB[indexPregunta], 'default', 1, .5);
+
+            if(indexPregunta != 4){
+                animacionSalida(respuestasC[indexPregunta], 'default', 1, .5);
+            }
+            
+            animacionSalida(paloma, 'default', 1, .5);
+            animacionSalida(tache, 'default', 1, .5);
+
+            indexPregunta++;
+
+            if(indexPregunta < preguntas.length){
+                respuestas.css('cursor', 'pointer');
+                setTimeout(()=>{
+                    entradaPreguntas();
+                }, 1000);
+            }
+            else{
+                evaluar();
+            }
+        }
+
+        function evaluar() {
+
+            if(aciertos >= 3){
+                evaluacionBuena();
+            } else {
+                evaluacionMala();
+            }
+           
+        }
+
+        function evaluacionBuena(){
+            aplicacion.reproducirAudio(audio[1], finalPagina, 1);
+            animacionEntrada(retroBuena, 'default', 1);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+        function evaluacionMala(){
+            aplicacion.reproducirAudio(audio[2], reintentar, 1);
+            animacionEntrada(retroMala, 'default', 1);
+        }
+
+        function reintentar(){
+            parpadear(btnReintentar);
+        }
+
+        btnReintentar.click(function(){
+            if(btnReintentar.css('cursor') == 'pointer'){
+                dejarParpadear(btnReintentar);
+                aplicacion.recargarPagina();
+            }
+        });
+
+
+        
+
+    </script>
+</body>
+</html>

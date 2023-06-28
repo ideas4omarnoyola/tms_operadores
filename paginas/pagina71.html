@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 71</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina71/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instruccion" src="../img/pagina71/instruccion.png" data-posX="0" data-posY="0" alt="">
+    
+    <div class="elementos drop" id="drop1" data-id="1" data-posX="553" data-posY="161" style="width:119px;  height:105px;"></div>
+
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="1" id="drag1" src="../img/pagina71/drag1.png" data-posX="265.955" data-posY="387" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="2" id="drag2" src="../img/pagina71/drag2.png" data-posX="330" data-posY="436" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="3" id="drag3" src="../img/pagina71/drag3.png" data-posX="406" data-posY="389" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="4" id="drag4" src="../img/pagina71/drag4.png" data-posX="474" data-posY="432" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="5" id="drag5" src="../img/pagina71/drag5.png" data-posX="559" data-posY="387" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="6" id="drag6" src="../img/pagina71/drag6.png" data-posX="621" data-posY="436" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="7" id="drag7" src="../img/pagina71/drag7.png" data-posX="694" data-posY="382" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="8" id="drag8" src="../img/pagina71/drag8.png" data-posX="773" data-posY="428" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="9" id="drag9" src="../img/pagina71/drag9.png" data-posX="837" data-posY="383" alt="">
+    <img class="elementos drags" data-id="1"data-drag="1" data-select="10" id="drag10" src="../img/pagina71/drag10.png" data-posX="906" data-posY="439" alt="">
+
+    <img class="elementos" id="info1" src="../img/pagina71/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2" src="../img/pagina71/info2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info3" src="../img/pagina71/info3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info4" src="../img/pagina71/info4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info5" src="../img/pagina71/info5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info6" src="../img/pagina71/info6.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info7" src="../img/pagina71/info7.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info8" src="../img/pagina71/info8.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info9" src="../img/pagina71/info9.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info10" src="../img/pagina71/info10.png" data-posX="0" data-posY="0" alt="">
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const instruccion= $('#instruccion');
+
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const info4 = $('#info4');
+        const info5 = $('#info5');
+        const info6 = $('#info6');
+        const info7 = $('#info7');
+        const info8 = $('#info8');
+        const info9 = $('#info9');
+        const info10 = $('#info10');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+        const drag5 = $('#drag5');
+        const drag6 = $('#drag6');
+        const drag7 = $('#drag7');
+        const drag8 = $('#drag8');
+        const drag9 = $('#drag9');
+        const drag10 = $('#drag10');
+
+        const drop1 = $('#drop1');
+
+        const drags = $('.drags');
+        drags.css('cursor', 'grab');
+
+        const drop = $('.drop');
+
+        let dragSelect;
+        let dropSelect;
+        let dropActivo;
+        let observandos = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_04.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_05.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_06.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_07.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_08.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_09.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_10.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_11.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_71_12.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutaInstruccion, 1);
+            animacionEntrada(fondo, 'default', 1);
+        }
+
+        function locutaInstruccion(){
+            aplicacion.reproducirAudio(audio[1], arrastre, 1);
+            animacionEntrada(instruccion, 'izquierda-derecha', 1);
+            animacionEntrada(drop1, 'default', 1);
+            animacionEntrada(drag1, 'default', 1);
+        }
+
+        function arrastre(){
+
+            drags.draggable({
+                revert: true,
+                start: function (event, ui) {
+                    dragSelect = $(this).data('id');
+                    // console.log("dragSelect: ", dragSelect);
+                    dropActivo = $(this).data('drag');
+                    dragActivo = $(this).data('select');
+                }
+            });
+            drop.droppable({
+                accept: ".drags",
+                tolerance: "intersect",
+                drop: function (event, ui) {
+                    dropSelect = $(this).data('id');
+                    // console.log("dropSelect: ",dropSelect)
+                    verificarLugar();
+                }
+            });
+        }
+
+        function verificarLugar(){
+            if(dragActivo === 1){
+                aplicacion.reproducirAudio(audio[2], cerrarInfo1, 1);
+                animacionEntrada(info1, 'default', 1);
+            }
+            if(dragActivo === 2){
+                aplicacion.reproducirAudio(audio[3], cerrarInfo2, 1);
+                animacionEntrada(info2, 'default', 1);
+            }
+            if(dragActivo === 3){
+                aplicacion.reproducirAudio(audio[4], cerrarInfo3, 1);
+                animacionEntrada(info3, 'default', 1);
+            }
+            if(dragActivo === 4){
+                aplicacion.reproducirAudio(audio[5], cerrarInfo4, 1);
+                animacionEntrada(info4, 'default', 1);
+            }
+            if(dragActivo === 5){
+                aplicacion.reproducirAudio(audio[6], cerrarInfo5, 1);
+                animacionEntrada(info5, 'default', 1);
+            }
+            if(dragActivo === 6){
+                aplicacion.reproducirAudio(audio[7], cerrarInfo6, 1);
+                animacionEntrada(info6, 'default', 1);
+            }
+            if(dragActivo === 7){
+                aplicacion.reproducirAudio(audio[8], cerrarInfo7, 1);
+                animacionEntrada(info7, 'default', 1);
+            }
+            if(dragActivo === 8){
+                aplicacion.reproducirAudio(audio[9], cerrarInfo8, 1);
+                animacionEntrada(info8, 'default', 1);
+            }
+            if(dragActivo === 9){
+                aplicacion.reproducirAudio(audio[10], cerrarInfo9, 1);
+                animacionEntrada(info9, 'default', 1);
+            }
+            if(dragActivo === 10){
+                aplicacion.reproducirAudio(audio[11], cerrarInfo10, 1);
+                animacionEntrada(info10, 'default', 1);
+            }
+        }
+
+        function cerrarInfo1(){
+            animacionSalida(info1, 'default', 1);
+            animacionEntrada(drag2, 'default', 1, 1);
+            arrastre();
+        }
+
+        function cerrarInfo2(){
+            animacionSalida(info2, 'default', 1);
+            animacionEntrada(drag3, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo3(){
+            animacionSalida(info3, 'default', 1);
+            animacionEntrada(drag4, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo4(){
+            animacionSalida(info4, 'default', 1);
+            animacionEntrada(drag5, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo5(){
+            animacionSalida(info5, 'default', 1);
+            animacionEntrada(drag6, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo6(){
+            animacionSalida(info6, 'default', 1);
+            animacionEntrada(drag7, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo7(){
+            animacionSalida(info7, 'default', 1);
+            animacionEntrada(drag8, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo8(){
+            animacionSalida(info8, 'default', 1);
+            animacionEntrada(drag9, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo9(){
+            animacionSalida(info9, 'default', 1);
+            animacionEntrada(drag10, 'default', 1, 1);
+            arrastre();
+        }
+        function cerrarInfo10(){
+            animacionSalida(info10, 'default', 1);
+            aplicacion.terminaPantalla();
+            arrastre();
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>

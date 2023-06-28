@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 65</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina65/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instruccion" src="../img/pagina65/instruccion.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos botones" id="boton1" data-index="0" src="../img/pagina65/boton1.png" data-posX="229" data-posY="400"/>
+    <img class="elementos botones" id="boton2" data-index="1" src="../img/pagina65/boton2.png" data-posX="284" data-posY="325"/>
+    <img class="elementos botones" id="boton3" data-index="2" src="../img/pagina65/boton3.png" data-posX="326" data-posY="250"/>
+    <img class="elementos botones" id="boton4" data-index="2" src="../img/pagina65/boton4.png" data-posX="398" data-posY="175"/>
+    <img class="elementos botones" id="boton5" data-index="2" src="../img/pagina65/boton5.png" data-posX="412" data-posY="142"/>
+
+    <img class="elementos" id="pop1" src="../img/pagina65/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop2" src="../img/pagina65/pop2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop3" src="../img/pagina65/pop3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop4" src="../img/pagina65/pop4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pop5" src="../img/pagina65/pop5.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina53/cerrar.png" data-posX="949" data-posY="215" alt="">
+    <img class="elementos botonCerrar" id="cerrar2" src="../img/pagina53/cerrar.png" data-posX="949" data-posY="215" alt="">
+    <img class="elementos botonCerrar" id="cerrar3" src="../img/pagina53/cerrar.png" data-posX="949" data-posY="215" alt="">
+    <img class="elementos botonCerrar" id="cerrar4" src="../img/pagina53/cerrar.png" data-posX="949" data-posY="215" alt="">
+    <img class="elementos botonCerrar" id="cerrar5" src="../img/pagina53/cerrar.png" data-posX="949" data-posY="215" alt="">
+
+
+ 
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const instruccion = $('#instruccion');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
+        const boton5 = $('#boton5');
+
+        const pop1 = $('#pop1');
+        const pop2 = $('#pop2');
+        const pop3 = $('#pop3');
+        const pop4 = $('#pop4');
+        const pop5 = $('#pop5');
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+        const cerrar3 = $('#cerrar3');
+        const cerrar4 = $('#cerrar4');
+        const cerrar5 = $('#cerrar5');
+        const botones = $('.botones');
+        const botonCerrar = $('.botonCerrar');
+
+        // narrar
+        const informacion = [fondo, boton1, boton2, boton3, boton4, boton5];
+        let indexInfo = 0;
+
+        // botones
+        const pops = [pop1, pop2, pop3, pop4, pop5];
+        const cerrar = [cerrar1, cerrar2, cerrar3, cerrar4, cerrar5];
+        const botonActivo = [boton1, boton2, boton3, boton4, boton5];
+        let indexPop = 0;
+        let botonesActivos = false;
+
+        // Audios------------------------------------------------------
+ 
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_04.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_05.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_06.mp3'),
+        ]
+
+        const audioPop = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_07.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_08.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_09.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_10.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_65_11.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            narrar();
+        }
+
+        function narrar(){
+            aplicacion.reproducirAudio(audio[indexInfo], siguienteNarrar, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+
+            if(indexInfo === 5){
+                animacionEntrada(instruccion, 'default', 1, 1);
+            }
+        }
+
+        function siguienteNarrar(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                narrar();
+            }
+            else{
+                botonera();
+            }
+        }
+
+        function botonera(){
+            parpadear(botonActivo[indexPop]);
+        }
+
+        botones.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+
+                    if(botonesActivos){
+                        indexPop = $(this).data('index');
+                    }
+                    else{
+                        dejarParpadear($(this));
+                    }
+
+                    aplicacion.reproducirAudio(audioPop[indexPop], cerrarPop, 1);
+                    animacionEntrada(pops[indexPop], 'default', 1, 1);
+                }
+            });
+        });
+
+        function cerrarPop(){ 
+            parpadear(cerrar[indexPop]);
+        }
+
+        botonCerrar.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+                    dejarParpadear($(this));                    
+                    animacionSalida(pops[indexPop], 'default', 1, 1);
+                    animacionSalida(cerrar[indexPop], 'default', 1, 1);
+                    
+                    if(!botonesActivos){
+                        setTimeout(() => {
+                            siguiente();
+                        }, 1000);
+                    }
+                }
+            });
+        });
+
+        function siguiente() {  
+            
+            indexPop++;
+
+            if(indexPop < pops.length){
+                botonera();
+            }
+            else{
+                activarBotones();
+                aplicacion.terminaPantalla();
+            }
+        }
+
+        function activarBotones(){
+            botones.css('cursor', 'pointer');
+            botonesActivos = true;
+        }
+
+    </script>
+</body>
+</html>

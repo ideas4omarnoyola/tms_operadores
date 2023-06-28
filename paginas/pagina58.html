@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 59</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina58/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro1" src="../img/pagina58/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina58/cuadro2.png" data-posX="0" data-posY="0"/>
+ 
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+
+
+        // Audios------------------------------------------------------
+ 
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_58_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_58_02.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutaCuadro2, 2);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(cuadro1, 'abajo-arriba', 2, 1);
+        }
+
+        function locutaCuadro2(){
+            aplicacion.reproducirAudio(audio[1], finalPagina, 2);
+            animacionEntrada(cuadro1, 'abajo-arriba', 2);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+
+
+
+    </script>
+</body>
+</html>

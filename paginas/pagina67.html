@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 67</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina67/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina67/dialogo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema1" src="../img/pagina67/esquema1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema2" src="../img/pagina67/esquema2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema3" src="../img/pagina67/esquema3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4" src="../img/pagina67/esquema4.png" data-posX="0" data-posY="0"/>
+
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const fondo2 = $('#fondo2');
+        const dialogo = $('#dialogo');
+        const esquema1 = $('#esquema1');
+        const esquema2 = $('#esquema2');
+        const esquema3 = $('#esquema3');
+        const esquema4 = $('#esquema4');
+
+        const informacion = [dialogo, esquema1, esquema2, esquema3, esquema4];
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+ 
+        const audioDialogo = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_67_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_67_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_67_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_67_04.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_67_05.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1);
+            setTimeout(() => {
+                narrar();
+            }, 800);
+        }
+
+        function narrar(){
+            aplicacion.reproducirAudio(audioDialogo[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                narrar();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

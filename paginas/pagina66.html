@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 66</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo1" src="../img/pagina66/fondo1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="fondo2" src="../img/pagina66/fondo2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="fondo3" src="../img/pagina66/fondo3.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="dialogo1" src="../img/pagina66/dialogo1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo2" src="../img/pagina66/dialogo2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo3" src="../img/pagina66/dialogo3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo4" src="../img/pagina66/dialogo4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo5" src="../img/pagina66/dialogo5.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo6" src="../img/pagina66/dialogo6.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo7" src="../img/pagina66/dialogo7.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo8" src="../img/pagina66/dialogo8.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo9" src="../img/pagina66/dialogo9.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo10" src="../img/pagina66/dialogo10.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo11" src="../img/pagina66/dialogo11.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo12" src="../img/pagina66/dialogo12.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo13" src="../img/pagina66/dialogo13.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo14" src="../img/pagina66/dialogo14.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo15" src="../img/pagina66/dialogo15.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo16" src="../img/pagina66/dialogo16.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo17" src="../img/pagina66/dialogo17.png" data-posX="0" data-posY="0"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo1 = $('#fondo1');
+        const fondo2 = $('#fondo2');
+        const fondo3 = $('#fondo3');
+
+        const dialogo1 = $('#dialogo1');
+        const dialogo2 = $('#dialogo2');
+        const dialogo3 = $('#dialogo3');
+        const dialogo4 = $('#dialogo4');
+        const dialogo5 = $('#dialogo5');
+        const dialogo6 = $('#dialogo6');
+        const dialogo7 = $('#dialogo7');
+        const dialogo8 = $('#dialogo8');
+        const dialogo9 = $('#dialogo9');
+        const dialogo10 = $('#dialogo10');
+        const dialogo11 = $('#dialogo11');
+        const dialogo12 = $('#dialogo12');
+        const dialogo13 = $('#dialogo13');
+        const dialogo14 = $('#dialogo14');
+        const dialogo15 = $('#dialogo15');
+        const dialogo16 = $('#dialogo16');
+        const dialogo17 = $('#dialogo17');
+
+        const informacion = [dialogo1, dialogo2, dialogo3, dialogo4, dialogo5, dialogo6, dialogo7, dialogo8, dialogo9, dialogo10, dialogo11, dialogo12, dialogo13, dialogo14, dialogo15, dialogo16, dialogo17];
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+ 
+        const audioDialogo = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_04.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_05.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_06.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_07.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_08.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_09.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_10.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_11.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_12.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_13.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_14.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_15.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_16.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_66_17.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo1, 'default', 1);
+            setTimeout(() => {
+                narrar();
+            }, 800);
+        }
+
+        function narrar(){
+            aplicacion.reproducirAudio(audioDialogo[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+
+            if(indexInfo === 6){
+                animacionSalida(fondo1, 'default', 1);
+                animacionEntrada(fondo2, 'default', 1);
+            }
+
+            if(indexInfo === 11){
+                animacionSalida(fondo2, 'default', 1);
+                animacionEntrada(fondo3, 'default', 1);
+            }
+        }
+
+        function siguiente(){
+            animacionSalida(informacion[indexInfo], 'default', 1);
+
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                narrar();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

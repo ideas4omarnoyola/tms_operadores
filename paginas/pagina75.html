@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 75</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina75/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro1" src="../img/pagina75/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina75/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro3" src="../img/pagina75/cuadro3.png" data-posX="0" data-posY="0"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const cuadro3 = $('#cuadro3');
+
+        const informacion = [cuadro1, cuadro2, cuadro3];
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+ 
+        const audiocuadro = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_75_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_75_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_75_03.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1);
+            setTimeout(() => {
+                narrar();
+            }, 800);
+        }
+
+        function narrar(){
+            aplicacion.reproducirAudio(audiocuadro[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
+
+        function siguiente(){
+            animacionSalida(informacion[indexInfo], 'default', 1);
+
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                narrar();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>
