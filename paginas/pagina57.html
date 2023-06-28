@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 57</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <!-- parte 57 -->
+    <img class="elementos" id="fondo1" src="../img/pagina57/fondo1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo1" src="../img/pagina57/dialogo1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos esquema1" id="esquema1_1" src="../img/pagina57/esquema1_1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos esquema1" id="esquema1_2" src="../img/pagina57/esquema1_2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos esquema1" id="esquema1_3" src="../img/pagina57/esquema1_3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos esquema1" id="esquema1_4" src="../img/pagina57/esquema1_4.png" data-posX="0" data-posY="0"/>
+
+    <!-- parte 57.1 -->
+    <img class="elementos" id="fondo2" src="../img/pagina57/fondo2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo2" src="../img/pagina57/dialogo2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo3" src="../img/pagina57/dialogo3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema2" src="../img/pagina57/esquema2.png" data-posX="0" data-posY="0"/>
+
+    <!-- parte 57.2 -->
+    <img class="elementos" id="fondo3" src="../img/pagina57/fondo3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo3" src="../img/pagina57/dialogo3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo4" src="../img/pagina57/dialogo4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo5" src="../img/pagina57/dialogo5.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema3_1" src="../img/pagina57/esquema3_1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos esquema3" id="esquema3_2" src="../img/pagina57/esquema3_2.png" data-posX="0" data-posY="0"/>
+
+    <!-- parte 57.3 -->
+    <img class="elementos esquema3" id="esquema3_3" src="../img/pagina57/esquema3_3.png" data-posX="0" data-posY="0"/>
+
+    <!-- parte 57.4 -->
+    <img class="elementos" id="fondo4" src="../img/pagina57/fondo4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo6" src="../img/pagina57/dialogo6.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_1" src="../img/pagina57/esquema4_1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_2" src="../img/pagina57/esquema4_2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_3" src="../img/pagina57/esquema4_3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_4" src="../img/pagina57/esquema4_4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_5" src="../img/pagina57/esquema4_5.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_6" src="../img/pagina57/esquema4_6.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_7" src="../img/pagina57/esquema4_7.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_8" src="../img/pagina57/esquema4_8.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="esquema4_9" src="../img/pagina57/esquema4_9.png" data-posX="0" data-posY="0"/>
+    
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo1 = $('#fondo1');
+        const fondo2 = $('#fondo2');
+        const fondo3 = $('#fondo3');
+        const fondo4 = $('#fondo4');
+
+        const dialogo1 = $('#dialogo1');
+        const dialogo2 = $('#dialogo2');
+        const dialogo3 = $('#dialogo3');
+        const dialogo4 = $('#dialogo4');
+        const dialogo5 = $('#dialogo5');
+        const dialogo6 = $('#dialogo6');
+
+        const esquema1_1 = $('#esquema1_1');
+        const esquema1_2 = $('#esquema1_2');
+        const esquema1_3 = $('#esquema1_3');
+        const esquema1_4 = $('#esquema1_4');
+        const esquema2 = $('#esquema2');
+        const esquema3_1 = $('#esquema3_1');
+        const esquema3_2 = $('#esquema3_2');
+        const esquema3_3 = $('#esquema3_3');
+        const esquema4_1 = $('#esquema4_1');
+        const esquema4_2 = $('#esquema4_2');
+        const esquema4_3 = $('#esquema4_3');
+        const esquema4_4 = $('#esquema4_4');
+        const esquema4_5 = $('#esquema4_5');
+        const esquema4_6 = $('#esquema4_6');
+        const esquema4_7 = $('#esquema4_7');
+        const esquema4_8 = $('#esquema4_8');
+        const esquema4_9 = $('#esquema4_9');
+
+        const esquema1 = $('.esquema1');
+        const esquema3 = $('.esquema3');
+        
+
+        const informacion = [dialogo1, dialogo2, esquema2, dialogo3, dialogo4, dialogo5, dialogo6, esquema3_1, fondo4];
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+ 
+        const audioDialogo = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_03.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_04.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_05.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_06.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_07.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_08.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_57_10.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo1, 'default', 1);
+            setTimeout(() => {
+                narrar();
+            }, 800);
+        }
+
+        function narrar(){
+            aplicacion.reproducirAudio(audioDialogo[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+
+            if(indexInfo === 0){
+                animacionEntrada(esquema1_1, 'default', 1, 1);
+                animacionEntrada(esquema1_2, 'default', 1, 1.5);
+                animacionEntrada(esquema1_3, 'default', 1, 2);
+                animacionEntrada(esquema1_4, 'default', 1, 2.5);
+            }
+
+            if(indexInfo === 1){
+                animacionSalida(fondo1, 'default', 1);
+                animacionSalida(esquema1, 'default', 1);
+                animacionEntrada(fondo2, 'default', 1);
+            }
+
+            if(indexInfo === 4){
+                animacionSalida(fondo2, 'default', 1);
+                animacionEntrada(fondo3, 'default', 1);
+            }
+
+            if(indexInfo === 7){
+                animacionEntrada(esquema3_2, 'default', 1, 1);
+                animacionEntrada(esquema3_3, 'default', 1, 1.3);
+            }
+
+            if(indexInfo === 8){
+                animacionSalida(fondo3, 'default', 1);
+                animacionSalida(esquema3, 'default', 1);
+                animacionEntrada(fondo4, 'default', 1);
+
+                animacionEntrada(esquema4_1, 'default', 1, 1);
+                animacionEntrada(esquema4_2, 'default', 1, 1.5);
+                animacionEntrada(esquema4_3, 'default', 1, 2);
+                animacionEntrada(esquema4_4, 'default', 1, 2.5);
+                animacionEntrada(esquema4_5, 'default', 1, 3);
+                animacionEntrada(esquema4_6, 'default', 1, 3.5);
+                animacionEntrada(esquema4_7, 'default', 1, 4);
+                animacionEntrada(esquema4_8, 'default', 1, 4.5);
+                animacionEntrada(esquema4_9, 'default', 1, 5);
+            }
+        }
+
+        function siguiente(){
+            animacionSalida(informacion[indexInfo], 'default', 1);
+
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                narrar();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>
