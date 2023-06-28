@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 77</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina77/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina77/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos infos" id="info1" src="../img/pagina77/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina77/info2.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos botones" id="boton1" src="../img/pagina77/boton1.png" data-posX="415" data-posY="174" alt="">
+    <img class="elementos botones" id="boton2" src="../img/pagina77/boton2.png" data-posX="415" data-posY="362" alt="">
+
+    <img class="elementos" id="pop" src="../img/pagina77/pop.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cerrar" src="../img/pagina77/cerrar.png" data-posX="768" data-posY="210" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const instrucciones = $('#instrucciones');
+        const pop = $('#pop');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const cerrar = $('#cerrar');
+
+        const botones = $('.botones');
+
+        const informacion = [info1, info2];
+        const btns = [boton1, boton2];
+
+        let indexInfo = 0;
+        let delay = 1;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_77_01.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_77_04.mp3'),
+        ]
+
+        const audioBotones = [
+            new Audio('../audios/TMS_FATIGA_OPERADORES_77_02.mp3'),
+            new Audio('../audios/TMS_FATIGA_OPERADORES_77_03.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+            animacionEntrada(instrucciones, 'default', 1, 17);
+
+            botones.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
+        }
+
+        function botonera(){
+            parpadear(btns[indexInfo]);
+        }
+
+        botones.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    aplicacion.reproducirAudio(audioBotones[indexInfo], siguiente, 1);
+                    animacionEntrada(informacion[indexInfo], 'default', 1);
+                    dejarParpadear($(this));
+                }
+            });
+        });
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                botonera();
+            }
+            else{
+                aplicacion.reproducirAudio(audio[1], cerrarPop, 1);
+                animacionEntrada(pop, 'default', 1);
+            }
+        }
+
+        function cerrarPop(){
+            parpadear(cerrar);
+        }
+
+        cerrar.click(function() {
+            dejarParpadear(cerrar);
+            animacionSalida(pop, 'default', 1);
+            animacionSalida(cerrar, 'default', 1);
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>
