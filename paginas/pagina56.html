@@ -28,7 +28,6 @@
     <img class="elementos" id="dialogo2" src="../img/pagina56/dialogo2.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="dialogo3" src="../img/pagina56/dialogo3.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="dialogo4" src="../img/pagina56/dialogo4.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="dialogo4_2" src="../img/pagina56/dialogo4_2.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="dialogo5" src="../img/pagina56/dialogo5.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="dialogo6" src="../img/pagina56/dialogo6.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="dialogo7" src="../img/pagina56/dialogo7.png" data-posX="0" data-posY="0"/>
@@ -44,7 +43,6 @@
         const dialogo2 = $('#dialogo2');
         const dialogo3 = $('#dialogo3');
         const dialogo4 = $('#dialogo4');
-        const dialogo4_2 = $('#dialogo4_2');
         const dialogo5 = $('#dialogo5');
         const dialogo6 = $('#dialogo6');
         const dialogo7 = $('#dialogo7');
@@ -80,21 +78,12 @@
         function narrar(){
             aplicacion.reproducirAudio(audioDialogo[indexInfo], siguiente, 1);
             animacionEntrada(informacion[indexInfo], 'default', 1);
-
-            if(indexInfo === 3){
-                animacionSalida(dialogo4, 'default', 1, 14);
-                animacionEntrada(dialogo4_2, 'default', 1, 14.5);
-            }
         }
 
         function siguiente(){
             animacionSalida(informacion[indexInfo], 'default', 1);
 
             indexInfo++;
-
-            if(indexInfo === 4){
-                animacionSalida(dialogo4_2, 'default', 1);
-            }
 
             if(indexInfo < informacion.length){
                 narrar();
